@@ -1,0 +1,43 @@
+### Listar usuarios (al iniciar el arreglo esta vacio)
+GET http://localhost:3000/users
+
+### Crear usuario
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Marco Padilla",
+  "email": "marco.padilla@espe.edu.ec"
+}
+
+### Verificar que el usuario aparece en el listado
+GET http://localhost:3000/users
+
+### Datos incompletos (400)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Sin Correo"
+}
+
+### Email con formato invalido (400)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Correo Malo",
+  "email": "correo-sin-arroba.com"
+}
+
+### Email repetido (409)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Otro Marco",
+  "email": "marco.padilla@espe.edu.ec"
+}
+
+### Ruta inexistente (404)
+GET http://localhost:3000/productos

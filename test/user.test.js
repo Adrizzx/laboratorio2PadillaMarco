@@ -57,4 +57,30 @@ describe('API de usuarios /users', () => {
       expect(despues.body).toContainEqual(expect.objectContaining(usuario));
     });
   });
+  // Pregunta 5.2: pruebas adicionales para subir la cobertura
+  test('POST /users con email sin formato válido devuelve 400', async () => {
+    const response = await request(app)
+      .post('/users')
+      .send({ name: 'Correo Malo', email: 'correo-sin-arroba.com' });
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBe('El formato del email no es válido');
+  });
+
+  test('POST /users con un email repetido devuelve 409', async () => {
+    const usuario = { name: 'Usuario Repetido', email: 'repetido@espe.edu.ec' };
+    await request(app).post('/users').send(usuario).expect(201);
+
+    const response = await request(app).post('/users').send(usuario);
+
+    expect(response.status).toBe(409);
+    expect(response.body.error).toBe('Ya existe un usuario con ese email');
+  });
+
+  test('una ruta que no existe devuelve 404', async () => {
+    const response = await request(app).get('/productos');
+
+    expect(response.status).toBe(404);
+    expect(response.body.error).toBe('Ruta no encontrada');
+  });
 });
