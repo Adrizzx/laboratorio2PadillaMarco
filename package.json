@@ -1,0 +1,39 @@
+{
+  "name": "laboratorio2padillamarco",
+  "version": "1.0.0",
+  "description": "Laboratorio 2 de Pruebas de Software: verificacion y validacion de una API REST de usuarios",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "keywords": [
+    "api",
+    "express",
+    "jest",
+    "supertest",
+    "eslint"
+  ],
+  "author": "Marco Adrian Padilla Triviño",
+  "license": "ISC",
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/server.js"
+    ]
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "globals": "^17.13.0",
+    "jest": "^30.5.2",
+    "supertest": "^7.3.1"
+  }
+}
